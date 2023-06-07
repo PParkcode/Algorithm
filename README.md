@@ -44,3 +44,18 @@ var q : Queue<Int> = LinkedList() // 큐로 선언하고 LinkedList 로 할당
     q.remove()  // 삭제하면서 객체 반환 (큐가 비어있는 상태이면 NoSuchElementException 발생)
     var tmp = q.poll()  // 삭제하면서 객체 반환 (큐가 비어있는 상태이면 false 반환)
 ```
+
+
+### List
+
+ - #### List의 값 전체를 수정하고 싶다면
+ ```kotlin
+ val list = mutableListOf(0,1,2,3)
+ 
+ // relaceAll메소드 사용. 모든 요소 1씩 증가
+ list.replaceAll { it.plus(1) }
+ 
+ // map 메소드 사용.  모든 요소 1씩 감소 
+ val newList = list.map { it.minus(1) }
+ 
+ ```
