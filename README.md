@@ -70,6 +70,10 @@ var q : Queue<Int> = LinkedList() // 큐로 선언하고 LinkedList 로 할당
    최소값, 최대값 확인 `peek()`  --> **O(1)**
 
    데이터 검색  `contains()`  --> **O(logN)**
+   
+ - #### remove(Object) 메소드
+   `remove(Object)`를 통해 특정 원소를 제거할 수 있다.
+   이 때 복수의 원소가 있더라도 하나만 삭제된다.
  
  ### Comparator
  
@@ -123,3 +127,34 @@ val priorityQueue = PriorityQueue<Pair<Int, Int>>(Comparator { a, b ->
 
 
 `PriorityQueue`에서 `Comparator`를 사용할 때, 비교 결과에 따라 우선순위가 결정되므로, `a.second.compareTo(b.second)`를 사용하면 `Pair`의 두 번째 값이 작은 순서대로 정렬되는 효과를 얻을 수 있습니다.
+
+
+### 문자열 다루기
+
+- #### 문자열 자르기
+
+```kotlin
+var str: String = "Hello World!"
+var temp: String
+
+// 0번 인덱스부터 5번 인덱스 전까지 자르기
+temp = str.substring(0 until 5)
+
+//3번 인덱스부터 끝까지 자르기
+temp = str.substring(3)
+
+// 2번 인덱스부터 6번 인덱스 전까지 자르기
+temp= str.substring(2,6)
+```
+- #### 문자열 분할하기
+
+```kotlin
+val str = "Hi my name is PParkcode!"
+
+// 공백을 기준으로 문자열 분할
+val s1 = str.split(" ")
+
+// 두가지 문자를 기준으로 문자열 분할
+val s2 = str.split(" ", "a")
+```
+
