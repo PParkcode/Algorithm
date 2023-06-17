@@ -23,9 +23,9 @@ class Solution {
     
     
     fun recur(str:String,target:String) {
-        count++
-        if(answer>0) return
         
+        if(answer>0) return
+        count++
         if(str == target) {
             answer =count
             return 
