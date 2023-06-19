@@ -156,5 +156,24 @@ val s1 = str.split(" ")
 
 // 두가지 문자를 기준으로 문자열 분할
 val s2 = str.split(" ", "a")
+
+//매개변수의 숫자 단위로 자름
+val s3 = str.chunked(Int)
+```
+
+#### Kotlin 에서의 링크드 리스트
+
+```kotlin
+// 연결 리스트 생성
+val graph = HashMap<Int,MutableList<Int>>()
+
+graph[0] = mutableListOf(1,2,3)
+graph[1] = mutableListOf(4,5,6)
+
+//key와 value를 통해 접근 가능하다
+for(item in graph) {
+    println(item.key)
+    println(item.value)
+}
 ```
 
