@@ -1,39 +1,38 @@
 import sys
+import copy
 from collections import deque
-n,m,k,x = map(int,sys.stdin.readline().rstrip().split())
-
-graph = [[] for _ in range(n+1)]
-
-for _ in range(m):
-    a,b= map(int,sys.stdin.readline().rstrip().split())
-    graph[a].append(b)
-
-visited = [False] * (n+1)
-d = [0] * (n+1)
-answer=0
-q=deque()
-q.append(x)
-visited[x]=True
-count= 0
-
-d[x]=0
-while q:
-    
-
-    v = q.popleft()
-
-    for i in range(len(graph[v])):
-        if not visited[graph[v][i]]:
-            q.append(graph[v][i])
-            visited[graph[v][i]] = True
-            d[graph[v][i]]= d[v]+1
-    count+=1
+sys.setrecursionlimit(10**9)
 
 
-for i in range(len(d)):
-    if d[i]==k:
-        answer+=1
-        print(i)
+def solutionbyBfs():
+    flag = True
+    (n, m, k, x) = map(int, input().split())
+    graph = [[] for _ in range(n + 1)]
+    visited = [-1] * (n + 1)
+    visited[x] = 0
+    for i in range(m):
+        (a, b) = map(int, sys.stdin.readline().rstrip().split())
+        graph[a].append(b)
 
-if answer==0:
-    print(-1)
+    q = deque()
+
+    q.append(x)
+
+    while q:
+        node = q.popleft()
+        now = visited[node]
+        for item in graph[node]:
+            if visited[item] == -1:
+                visited[item] = now + 1
+                q.append(item)
+
+    for i in range(len(visited)):
+        if visited[i] == k:
+            print(i)
+            flag = False
+
+    if flag:
+        print(-1)
+
+
+solutionbyBfs()
