@@ -4,7 +4,7 @@ def solution(queue1, queue2):
     answer = 0
 
     sum_q = sum(queue1) + sum(queue2)
-    limit = len(queue1)*4
+    limit = len(queue1)*2 +1
     
     if sum_q % 2 == 1:
         return -1
@@ -14,12 +14,9 @@ def solution(queue1, queue2):
     sum_q1 =sum(q1)
     sum_q2 = sum(q2)
     
-    while True:
+    while sum_q1!=sum_q2:
         if answer>limit:
             return -1
-        
-        if sum_q1 == sum_q2:
-            break
             
         if sum_q1 > sum_q2:
             temp = q1.popleft()
