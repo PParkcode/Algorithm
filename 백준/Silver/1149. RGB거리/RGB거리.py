@@ -1,30 +1,22 @@
-import copy
-INF = 987654321
-
 def solution():
     n = int(input())
-    graph = []
-    for i in range(n):
-        graph.append(list(map(int, input().split())))
+    cost = []
 
-    # N x 3 배열에서 각 자리에 자신이 가질 수 있는 최소 비용을 담을 table 변수 생성
-    table = copy.deepcopy(graph)
-    minValue = INF
+    for i in range(n):
+        cost.append(list(map(int, input().split())))
+
+    dp = [[987654321] * 3 for _ in range(n)]
+
+    dp[0][0] = cost[0][0]
+    dp[0][1] = cost[0][1]
+    dp[0][2] = cost[0][2]
 
     for i in range(1, n):
-        for j in range(3):
-            for k in range(3):
-                # 인덱스가 같다면 무시
-                if j == k:
-                    continue
-                # 윗 단계에서 가질 수 있는 값들 중 최소 값을 구한다.
-                minValue = min(table[i - 1][k], minValue)
-            # 해당 최소 값을 현재 table에 더하여 현재 자신이 가질 수 있는 최소값 갱신
-            table[i][j] += minValue
-            # 최소값 초기화 
-            minValue = INF
+        dp[i][0] = min(dp[i - 1][1], dp[i - 1][2]) + cost[i][0]
+        dp[i][1] = min(dp[i - 1][0], dp[i - 1][2]) + cost[i][1]
+        dp[i][2] = min(dp[i - 1][0], dp[i - 1][1]) + cost[i][2]
 
-    answer = min(table[n - 1])
+    answer = min(dp[n - 1][0], dp[n - 1][1], dp[n - 1][2])
     print(answer)
 
 
