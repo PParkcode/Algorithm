@@ -1,41 +1,39 @@
 def solution():
     n = int(input())
-    graph = {}
+    dic = {}
     for i in range(n):
-        temp = input().split()
-        graph[temp[0]] = []
-        graph[temp[0]].append(temp[1])
-        graph[temp[0]].append(temp[2])
+        node, left, right = input().split()
+        dic[node] = (left, right)
 
-    preOrder(graph, 'A')
+    preorder(dic, "A")
     print()
-    inOrder(graph, 'A')
+    inorder(dic, "A")
     print()
-    postOrder(graph, 'A')
+    postorder(dic, "A")
 
 
-def preOrder(graph, node):
-    if node == '.':
+def preorder(dic, root):
+    if root == ".":
         return
-    print(node, end='')
-    preOrder(graph, graph[node][0])
-    preOrder(graph, graph[node][1])
+    print(root, end="")
+    preorder(dic, dic[root][0])
+    preorder(dic, dic[root][1])
 
 
-def inOrder(graph, node):
-    if node == '.':
+def inorder(dic, root):
+    if root == ".":
         return
-    inOrder(graph, graph[node][0])
-    print(node, end='')
-    inOrder(graph, graph[node][1])
+    inorder(dic, dic[root][0])
+    print(root, end="")
+    inorder(dic, dic[root][1])
 
 
-def postOrder(graph, node):
-    if node == '.':
+def postorder(dic, root):
+    if root == ".":
         return
-    postOrder(graph, graph[node][0])
-    postOrder(graph, graph[node][1])
-    print(node, end='')
+    postorder(dic, dic[root][0])
+    postorder(dic, dic[root][1])
+    print(root, end="")
 
 
 solution()
